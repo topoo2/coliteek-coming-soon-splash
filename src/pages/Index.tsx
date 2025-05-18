@@ -21,7 +21,7 @@ const Index = () => {
           </div>
         ) : (
           <img 
-            src="/coliteek-logo.png" 
+            src="/lovable-uploads/58fece6e-e278-4d6e-b5c3-5a331a0f0e60.png" 
             alt="Coliteek Logo" 
             className="w-64 md:w-80 h-auto object-contain mx-auto"
             onError={() => setLogoError(true)}

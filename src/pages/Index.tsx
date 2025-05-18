@@ -1,12 +1,103 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useEffect, useRef, useState } from "react";
+import CountdownTimer from "@/components/CountdownTimer";
+import EmailForm from "@/components/EmailForm";
+import SocialLinks from "@/components/SocialLinks";
+import { Truck, Package } from "lucide-react";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+  const [isLoading, setIsLoading] = useState(true);
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Simulate loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      if (pageRef.current) {
+        pageRef.current.classList.remove("opacity-0");
+        pageRef.current.classList.add("opacity-100");
+      }
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse-slow">
+          <img 
+            src="/coliteek-logo.png" 
+            alt="Coliteek Logo" 
+            className="w-40 h-40 object-contain"
+          />
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div 
+      ref={pageRef} 
+      className="min-h-screen flex flex-col items-center justify-center py-12 px-4 transition-opacity duration-1000 opacity-0"
+    >
+      <header className="mb-8">
+        <img 
+          src="/coliteek-logo.png" 
+          alt="Coliteek Logo" 
+          className="w-64 md:w-80 h-auto object-contain mx-auto"
+        />
+      </header>
+
+      <main className="flex flex-col items-center max-w-4xl w-full mx-auto text-center gap-8">
+        <div className="space-y-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-coliteek-white">
+            Coming Soon
+          </h1>
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+            We're working hard to bring you the best delivery experience. Stay tuned!
+          </p>
+        </div>
+
+        <CountdownTimer />
+
+        <div className="w-full max-w-md mx-auto mt-4">
+          <p className="mb-4 text-gray-300">
+            Get notified when we launch:
+          </p>
+          <EmailForm />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl mt-8">
+          <div className="bg-secondary p-6 rounded-lg text-left">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-coliteek-red p-2 rounded-full">
+                <Truck className="w-5 h-5" />
+              </div>
+              <h3 className="text-xl font-semibold">Fast Delivery</h3>
+            </div>
+            <p className="text-gray-300">
+              Experience lightning fast deliveries with our optimized logistics network and dedicated drivers.
+            </p>
+          </div>
+          <div className="bg-secondary p-6 rounded-lg text-left">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-coliteek-red p-2 rounded-full">
+                <Package className="w-5 h-5" />
+              </div>
+              <h3 className="text-xl font-semibold">Secure Handling</h3>
+            </div>
+            <p className="text-gray-300">
+              Your packages are treated with care from pickup to delivery, ensuring they arrive in perfect condition.
+            </p>
+          </div>
+        </div>
+
+        <SocialLinks />
+      </main>
+
+      <footer className="mt-16 text-center text-sm text-gray-400">
+        <p>© {new Date().getFullYear()} Coliteek. All rights reserved.</p>
+      </footer>
     </div>
   );
 };

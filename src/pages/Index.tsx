@@ -1,5 +1,5 @@
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import EmailForm from "@/components/EmailForm";
 import SocialLinks from "@/components/SocialLinks";
@@ -7,6 +7,7 @@ import { Truck, Package } from "lucide-react";
 
 const Index = () => {
   const pageRef = useRef<HTMLDivElement>(null);
+  const [logoError, setLogoError] = useState(false);
 
   return (
     <div 
@@ -14,11 +15,18 @@ const Index = () => {
       className="min-h-screen flex flex-col items-center justify-center py-12 px-4"
     >
       <header className="mb-8">
-        <img 
-          src="/coliteek-logo.png" 
-          alt="Coliteek Logo" 
-          className="w-64 md:w-80 h-auto object-contain mx-auto"
-        />
+        {logoError ? (
+          <div className="w-64 md:w-80 h-20 flex items-center justify-center bg-secondary rounded-lg mb-4">
+            <h2 className="text-2xl font-bold text-coliteek-red">Coliteek</h2>
+          </div>
+        ) : (
+          <img 
+            src="/coliteek-logo.png" 
+            alt="Coliteek Logo" 
+            className="w-64 md:w-80 h-auto object-contain mx-auto"
+            onError={() => setLogoError(true)}
+          />
+        )}
       </header>
 
       <main className="flex flex-col items-center max-w-4xl w-full mx-auto text-center gap-8">

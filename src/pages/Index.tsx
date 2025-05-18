@@ -16,14 +16,14 @@ const Index = () => {
     >
       <header className="mb-8">
         {logoError ? (
-          <div className="w-64 md:w-80 h-20 flex items-center justify-center bg-secondary rounded-lg mb-4">
+          <div className="w-40 md:w-48 h-16 flex items-center justify-center bg-secondary rounded-lg mb-4">
             <h2 className="text-2xl font-bold text-coliteek-red">Coliteek</h2>
           </div>
         ) : (
           <img 
             src="/lovable-uploads/58fece6e-e278-4d6e-b5c3-5a331a0f0e60.png" 
             alt="Coliteek Logo" 
-            className="w-64 md:w-80 h-auto object-contain mx-auto"
+            className="w-40 md:w-48 h-auto object-contain mx-auto"
             onError={() => setLogoError(true)}
           />
         )}

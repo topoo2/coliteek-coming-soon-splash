@@ -1,44 +1,17 @@
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import EmailForm from "@/components/EmailForm";
 import SocialLinks from "@/components/SocialLinks";
 import { Truck, Package } from "lucide-react";
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const pageRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      if (pageRef.current) {
-        pageRef.current.classList.remove("opacity-0");
-        pageRef.current.classList.add("opacity-100");
-      }
-    }, 500);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse-slow">
-          <img 
-            src="/coliteek-logo.png" 
-            alt="Coliteek Logo" 
-            className="w-40 h-40 object-contain"
-          />
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div 
       ref={pageRef} 
-      className="min-h-screen flex flex-col items-center justify-center py-12 px-4 transition-opacity duration-1000 opacity-0"
+      className="min-h-screen flex flex-col items-center justify-center py-12 px-4"
     >
       <header className="mb-8">
         <img 

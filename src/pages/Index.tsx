@@ -12,7 +12,11 @@ const Index = () => {
   return (
     <div 
       ref={pageRef} 
-      className="min-h-screen flex flex-col items-center justify-center py-12 px-4"
+      className="min-h-screen flex flex-col items-center justify-center py-12 px-4 bg-gradient-to-br from-black via-gray-900 to-gray-800 animate-gradient-slow"
+      style={{
+        backgroundSize: '200% 200%',
+        animation: 'gradient 15s ease infinite',
+      }}
     >
       <header className="mb-8">
         {logoError ? (
